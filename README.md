@@ -6,6 +6,13 @@
 yarn add gmagick
 ```
 
+### Debian 9
+
+```
+apt update && apt install -y --install-recommends \
+    cmake graphicsmagick "libgraphicsmagick++1-dev"
+```
+
 ### Requirements
 
 - GraphicsMagick 1.3.36
