@@ -19,9 +19,7 @@ private:
     static NAN_METHOD(Negate);
     static NAN_METHOD(Compare);
     static NAN_METHOD(Emboss);
-    static NAN_METHOD(Encipher);
     static NAN_METHOD(Density);
-    static NAN_METHOD(Decipher);
     static NAN_METHOD(Crop);
     static NAN_METHOD(Roll);
     static NAN_METHOD(Rotate);

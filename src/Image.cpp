@@ -19,8 +19,6 @@ void Image::Init(v8::Local<v8::Object> exports) {
     Nan::SetPrototypeMethod(tpl,"write",Write);
     Nan::SetPrototypeMethod(tpl,"composite",Composite);
     Nan::SetPrototypeMethod(tpl,"backgroundColor",BackgroundColor);
-    Nan::SetPrototypeMethod(tpl,"encipher",Encipher);
-    Nan::SetPrototypeMethod(tpl,"decipher",Decipher);
     Nan::SetPrototypeMethod(tpl,"density",Density);
     Nan::SetPrototypeMethod(tpl,"magick",Magick);
     Nan::SetPrototypeMethod(tpl,"emboss",Emboss);
@@ -301,42 +299,6 @@ NAN_METHOD(Image::Rotate) {
     }
 }
 
-NAN_METHOD(Image::Encipher) {
-    std::string passphrase;
-    if(!TypeConverter::GetArgument(info[0], passphrase)) {
-        Nan::ThrowError("First argument must be a valid double-precision integer");
-        return;
-    }
-    Image* img;
-    if(!TypeConverter::Unwrap(info.This(),&img)) {
-        Nan::ThrowError("resize() called under invalid context");
-        return;
-    }
-    try {
-        img->value.encipher(passphrase);
-    } catch(std::exception& e) {
-        Nan::ThrowError(e.what());
-    }
-}
-
-NAN_METHOD(Image::Decipher) {
-    std::string passphrase;
-    if(!TypeConverter::GetArgument(info[0], passphrase)) {
-        Nan::ThrowError("First argument must be a valid double-precision integer");
-        return;
-    }
-    Image* img;
-    if(!TypeConverter::Unwrap(info.This(),&img)) {
-        Nan::ThrowError("resize() called under invalid context");
-        return;
-    }
-    try {
-        img->value.decipher(passphrase);
-    } catch(std::exception& e) {
-        Nan::ThrowError(e.what());
-    }
-}
-
 NAN_METHOD(Image::OilPaint) {
     double radius;
     if(!TypeConverter::GetArgument(info[0], radius)) {
@@ -407,14 +369,7 @@ NAN_METHOD(Image::Compare) {
         return;
     }
     try {
-        Magick::MetricType metricType;
-        Local<Value> result;
-        if(TypeConverter::GetArgument(info[1], metricType)) {
-            result = Nan::New(img->value.compare(ref->value,metricType));
-        } else {
-            result = Nan::New(img->value.compare(ref->value));
-        }
-        info.GetReturnValue().Set(result);
+        info.GetReturnValue().Set(Nan::New(img->value.compare(ref->value)));
     } catch(std::exception& e) {
         Nan::ThrowError(e.what());
     }

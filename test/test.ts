@@ -8,11 +8,11 @@ import {
 (async () => {
     assert.throws(() => {
         new Color('x');
-    },/unrecognized color/);
+    },/Unrecognized color/);
 
     assert.throws(() => {
         new Image().read('!');
-    },/unable to open image/);
+    },/Unable to open file/);
 
     const img1 = new Image();
     img1.read(path.resolve(__dirname,'Screenshot from 2021-07-22 11-13-30.png'));

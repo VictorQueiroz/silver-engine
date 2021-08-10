@@ -1,4 +1,4 @@
-project(node_imagemagick CXX)
+project(node_gmagick CXX)
 
 cmake_minimum_required(VERSION 3.7)
 
@@ -12,12 +12,12 @@ set(CMAKE_JS_INC
 endif()
 
 find_package(PkgConfig)
-pkg_check_modules(ImageMagick REQUIRED ImageMagick++)
+pkg_check_modules(GraphicsMagick REQUIRED GraphicsMagick++)
 
-set(IMAGEMAGICK_COMPILE_OPTIONS ${IMAGEMAGICK_COMPILE_OPTIONS} ${ImageMagick_CFLAGS_OTHER})
+set(IMAGEMAGICK_COMPILE_OPTIONS ${IMAGEMAGICK_COMPILE_OPTIONS} ${GraphicsMagick_CFLAGS_OTHER})
 
 add_library(
-    imagemagick SHARED
+    gmagick SHARED
     ${CMAKE_JS_SRC}
     src/main.cpp
     src/Image.cpp
@@ -29,18 +29,18 @@ add_library(
     src/Color.cpp
     src/Color.h
 )
-target_link_libraries(imagemagick PRIVATE ${ImageMagick_LIBRARIES})
+target_link_libraries(gmagick PRIVATE ${GraphicsMagick_LIBRARIES})
 target_compile_options(
-    imagemagick PRIVATE
-    -Wfatal-errors -Werror ${ImageMagick_CFLAGS_OTHER}
+    gmagick PRIVATE
+    -Wfatal-errors -Werror ${GraphicsMagick_CFLAGS_OTHER}
     #-pedantic -Wall -Werror -Wextra -Wfatal-errors
     #-Wno-error=unused-parameter
 )
 target_include_directories(
-    imagemagick PRIVATE
-    ${ImageMagick_INCLUDE_DIRS} ${CMAKE_JS_INC}
+    gmagick PRIVATE
+    ${GraphicsMagick_INCLUDE_DIRS} ${CMAKE_JS_INC}
 )
 
 if(DEFINED CMAKE_JS_VERSION)
-    set_target_properties(imagemagick PROPERTIES PREFIX "" SUFFIX ".node")
+    set_target_properties(gmagick PROPERTIES PREFIX "" SUFFIX ".node")
 endif()

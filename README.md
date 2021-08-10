@@ -1,28 +1,21 @@
-# image-m
+# gmagick
 
 ### Installation
 
 ```
-yarn add image-m
-```
-
-### Debian 10
-
-```
-apt install -y --install-recommends \
-    "libmagick++-6.q16-8" libmagick++-dev cmake
+yarn add gmagick
 ```
 
 ### Requirements
 
-- ImageMagick 6.9.12
+- GraphicsMagick 1.3.36
 - C++14
 - CMake >= 3.7
 
 ### Usage
 
 ```ts
-import {Geometry,Image} from 'image-m';
+import {Geometry,Image} from 'gmagick';
 
 const img = new Image();
 img.read('image.png');
@@ -31,7 +24,7 @@ img.write('new-image.png');
 ```
 
 ```ts
-import {Image} from 'image-m';
+import {Image} from 'gmagick';
 
 const img1 = new Image();
 img1.read('image.png');
@@ -48,10 +41,10 @@ import {
     Image,
     Color,
     Geometry
-} from 'image-m';
+} from 'gmagick';
 
 const img = new Image();
-img.density(new Point(256,256));
+img.density(new Geometry('256x256'));
 img.backgroundColor(new Color(0,0,0,0));
 img.read(
     path.resolve(__dirname,'icon.svg')

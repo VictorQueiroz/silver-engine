@@ -10,9 +10,9 @@ public:
     static bool GetArgument(v8::Local<v8::Value>,double&);
     static bool GetArgument(v8::Local<v8::Value>,float&);
     static bool GetArgument(v8::Local<v8::Value>,unsigned short&);
+    static bool GetArgument(v8::Local<v8::Value>,unsigned char&);
     static bool GetArgument(v8::Local<v8::Value>,bool&);
     static bool GetArgument(v8::Local<v8::Value>,std::string&);
-    static bool GetArgument(v8::Local<v8::Value>,Magick::MetricType&);
     static bool GetArgument(v8::Local<v8::Value> val, Magick::CompositeOperator&);
     template<typename T>
     static bool Unwrap(v8::Local<v8::Value> obj, T** out) {

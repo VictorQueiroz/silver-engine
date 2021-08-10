@@ -53,18 +53,18 @@ Color::Color(): value() {
 }
 
 Color::Color(
-    const MagickCore::Quantum &red,
-    const MagickCore::Quantum &green,
-    const MagickCore::Quantum &blue
+    const Magick::Quantum &red,
+    const Magick::Quantum &green,
+    const Magick::Quantum &blue
 ): value(red, green, blue) {
 
 }
 
 Color::Color(
-    const MagickCore::Quantum &red,
-    const MagickCore::Quantum &green,
-    const MagickCore::Quantum &blue,
-    const MagickCore::Quantum &alpha
+    const Magick::Quantum &red,
+    const Magick::Quantum &green,
+    const Magick::Quantum &blue,
+    const Magick::Quantum &alpha
 ): value(red, green, blue, alpha) {
 
 }
